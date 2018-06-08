@@ -1,0 +1,359 @@
+% 	Name		:: 	sthlm Beamer Theme  HEAVILY based on the hsrmbeamer theme (Benjamin Weiss)
+%	Author		:: 	Mark Hendry Olson (mark@hendryolson.com)
+%	Created		::	2013-07-31
+%	Updated		::	June 18, 2015 at 08:45
+%	Version		:: 	1.0.2
+%	Email		:: 	mark@hendryolson.com
+%	Website		:: 	http://hendryolson.com
+%
+% 	License		:: 	This file may be distributed and/or modified under the
+%                  	GNU Public License.
+%
+%	Description	::	This presentation is a demonstration of the sthlm beamer
+%					theme, which is HEAVILY based on the HSRM beamer theme created by Benjamin Weiss
+%					(benjamin.weiss@student.hs-rm.de), which can be found on GitHub
+%					<https://github.com/hsrmbeamertheme/hsrmbeamertheme>.
+
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%
+%        LOADING DOCUMENT
+%
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\documentclass[newPxFont,sthlmFooter]{beamer}
+\usetheme{sthlm}
+%\usecolortheme{sthlmv42}
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%        LOADING PACKAGES
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{chronology}
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+\usepackage{xspace}
+\usepackage{times}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\usepackage{ragged2e}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{diagbox}
+\usepackage{amsmath} % для системы
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{tikz-qtree}
+\usepackage{tabularx}
+\usepackage{qtree} 
+\usepackage{bbm}
+\usepackage{chronology}
+%\usepackage{bbold}
+\DeclareMathAlphabet{\mathbbold}{U}{bbold}{m}{n}
+\usepackage{setspace}
+\usepackage{scalerel}
+\renewcommand{\event}[3][e]{%
+  \pgfmathsetlength\xstop{(#2-\theyearstart)*\unit}%
+  \ifx #1e%
+    \draw[fill=black,draw=none,opacity=0.5]%
+      (\xstop, 0) circle (.2\unit)%
+      node[opacity=1,rotate=45,right=.2\unit] {#3};%
+  \else%
+    \pgfmathsetlength\xstart{(#1-\theyearstart)*\unit}%
+    \draw[fill=black,draw=none,opacity=0.5,rounded corners=.1\unit]%
+      (\xstart,-.1\unit) rectangle%
+      node[opacity=1,rotate=45,right=.2\unit] {#3} (\xstop,.1\unit);%
+  \fi}%
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%        BEAMER OPTIONS
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+%\setbeameroption{show notes}
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%
+%	PRESENTATION INFORMATION
+%
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zp}{\mathbb{Z}_p}
+\newcommand{\ZpZ}{\mathbb{Z}/p\mathbb{Z}}
+\newcommand{\ZnZ}{\mathbb{Z}/n\mathbb{Z}}
+\newcommand{\Fpn}{\mathbb{F}_{p^n}}
+\newcommand{\Qh}{\mathcal{Q}_h}
+\newcommand{\X}{\mathbb{X}}
+\renewcommand{\C}{\mathbb{C}}
+\newcommand{\Cp}{\mathbb{C}_p}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rmin}{\mathbb{R}_\text{min}}
+\newcommand{\Rmax}{\mathbb{R}_\text{max}}
+\newcommand{\Rminmax}{\mathbb{R}_\text{min,max}}
+\newcommand{\Rmaxmin}{\mathbb{R}_\text{max,min}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qp}{\mathbb{Q}_p}
+\newcommand{\Qpmin}{\mathbb{Q}_{p,\text{min}}}
+\newcommand{\Qpmax}{\mathbb{Q}_{p,\text{max}}}
+\newcommand{\Qpminmax}{\mathbb{Q}_{p,\text{min,max}}}
+\newcommand{\Qpmaxmin}{\mathbb{Q}_{p,\text{max,min}}}
+\newcommand{\Tp}{\mathbb{T}_p}
+\newcommand{\z}{\mathbbold{0}}
+\renewcommand{\u}{\mathbbold{1}}
+\newcommand{\comma}{\scaleobj{2}{,}}
+
+\newcolumntype{H}{>{\centering\arraybackslash}p{2em}}
+\newcolumntype{Q}{>{\centering\arraybackslash}p{5.9em}}
+\newcolumntype{C}{>{\centering\arraybackslash}p{8em}}
+\newcolumntype{D}{>{\centering\arraybackslash}p{11em}}
+\newcolumntype{L}{>{\centering\arraybackslash}p{13em}}
+
+\newcommand*{\hindent}{\hspace*{-0.1cm}}
+\newcommand*{\vindent}{\vspace*{-0.5cm}}
+\newcommand*{\vvindent}{\vspace*{-0.7cm}}
+
+
+\DeclarePairedDelimiterX{\norm}[1]{\lVert}{\rVert}{#1}
+\apptocmd{\frame}{}{\justifying}{}
+
+% если нужны блоки
+% \setbeamertemplate{blocks}[rounded][shadow=true]
+% \setbeamercolor*{title}{use=structure,fg=white,bg=structure.fg,}
+% \setbeamertemplate{title page}[default][colsep=-4bp,rounded=true,shadow=true]
+
+\tikzset{
+   commutative diagrams/.cd,
+   arrow style=tikz,
+   diagrams={>=latex}}
+\tikzcdset{  crossing over/.style={
+    /tikz/preaction={
+      /tikz/draw,
+      /tikz/color=\pgfkeysvalueof{/tikz/commutative diagrams/background color},
+      /tikz/arrows=-,
+      /tikz/line width=\pgfkeysvalueof{/tikz/commutative
+      diagrams/crossing over clearance}}}}
+
+
+\title{$p$-адическая интерполяция дзета-функции Римана}
+\subtitle{}
+%\date{\small{\jobname}}
+%\date{\today}
+\author{\texttt{Приньков А. С.}}
+\institute{Липецк 2016}
+
+% \hypersetup{
+% pdfauthor = {Mark H. Olson: mark@hendryolson.com},
+% pdfsubject = {},
+% pdfkeywords = {},
+% pdfmoddate= {D:\pdfdate},
+% pdfcreator = {}
+% }
+
+\begin{document}
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%
+%	TITLE PAGE
+%
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\maketitle
+
+% \begin{frame}[plain]
+% 	\titlepage
+% \end{frame}
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%
+%	TABLE OF CONTENTS: OVERVIEW
+%
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\section*{sthlm Theme Information}
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME:
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{frame}[c]{Цель работы}
+Целью работы является исследование вопроса сходимости дзета-функции Римана и её практического применения.
+Для достижения поставленной цели сформулированы следующие задачи:
+\begin{itemize}
+\item Изучить литературу по $p$-адическому анализу
+\item Применить на практики методологию $p$-адической интерполяции
+\item Провести практические вычисления
+\end{itemize} 
+
+\end{frame}
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME:
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{frame}[c]{Основные определения}
+\begin{alertblock}{Определение нормы}
+Нормой на поле F называется отображение, обозначаемое через $\| \|$, поля F в множество неотрицательных вещественных чисел, такое что:
+\begin{enumerate}
+\item $\|x\| = 0 \Leftrightarrow x = 0$
+\item $\|x \odot y\| = \|x\| \odot \|y\|$
+\item $\|x + y \| \leq \|x\| + \|y\|$
+\end{enumerate}
+\end{alertblock}
+
+
+\end{frame}
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME:
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{frame}{Основные определения}
+\begin{alertblock}{Определение метрики}
+Функция $d$, определенная на множестве пар $(x, y) \in F$ и принимающая значения из $\mathbb{R}_+$, называется метрикой в $F$, если она обладает следующими свойствами:
+\begin{enumerate}
+\item $ d(x, y) = 0 \Leftrightarrow x = y$
+\item $d(x, y) = d(y, x)$
+\item $d(x, y) \leq d(x, z) + d(z, y)$
+\end{enumerate}
+\vspace{0.5em}
+Метрика $d$ инуцирована нормой, если $d(x,y) = \|x-y\|$ 
+\end{alertblock}
+
+\end{frame}
+
+\section*{Overview}
+
+\begin{frame}[fragile]{$p$-адическое расширение}\vvindent
+Определение нормы $\mathbb{Q}_p$
+\[
+|x|_p=
+\left\{
+\begin{aligned}	
+&0,& x = 0 \\
+&\frac{1}{p^{ord_pa}},& x \ne 0 \\
+\end{aligned}
+\right.
+\]
+
+\begin{block}{Расширение алгебраических структур (Гамильтон, 1832)}
+\centering\begin{tikzcd}[row sep=tiny, column sep=scriptsize]
+&&\ZpZ&&\\
+						&\Z \ar[dr] \ar[ur] 	& 		&	\R \ar[r] & \C\\
+    \N \ar[ur] \ar[dr]  &       		&	\Q \ar[ur]\ar[dr] &	&	  	\\
+    					&\Q_+ \ar[ur] 	& 		&	\Qp \ar[r]	& \Cp \\
+\end{tikzcd}
+\end{block}
+
+\end{frame}
+
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%
+%	SECTION: BACKGROUND
+%
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\section{$p$-адическая $\zeta$-функция}
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME: What is Beamer?
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{frame}{Основные понятия}
+
+\begin{exampleblock}{Дзета-функция Римана}
+\begin{center}
+$\zeta (s)=\sum \limits_{n=1}^{\infty }{\frac {1}{n^{s}}}$
+, или же в интегральном виде $\int \limits_1^{\infty}\frac{dx}{x^s} $
+\end{center}
+\end{exampleblock}
+
+\begin{alertblock}{Утверждение}
+\begin{center}
+ Пусть $ \mathbb{Q}_p{\stackrel {f}{\longrightarrow }}\mathbb{Q}_p$, такая что $f(2k) = C' \cdot \zeta(2k)$, \\ тогда $f(2k)$ - всегда рационально \\и $\forall \varepsilon > 0$ $ \exists k, k' : |k - k'|_p < \varepsilon$, то $|f(k) - f(k')|_p < \varepsilon$  
+\end{center}
+\end{alertblock}
+
+\end{frame}{}
+
+\begin{frame}{Числа Бернулли}
+\begin{block}{Числа Бернулли}
+По определению $\frac{t}{e^t-1} = \frac{1}{1+t/2!+t^2/3! +...+t^n/(n+1)!} = \sum \limits_{k=0}^{\infty}B_k\cdot t^k / k!$ \\ Здесь $B_k$ - числа Бернулли\\ например: $B_0 = 1, B_1 = -1/2, B_2 = 1/6, B_3 = 0, ...$
+\\ В $\mathbb{R}$ справедлива следующая формула: $\zeta(2k) = \pi^{2k} \cdot C \cdot B_{2k}$, для $2k>1$
+\end{block}
+\end{frame}
+
+\begin{frame}{Числа Бернулли}
+\begin{exampleblock}{Связь $\zeta(s)$ и $\zeta(s)_p$}
+\begin{center}
+$\zeta(1-k) = \zeta(1-k)_p/(1-p^{k-1})$, \\ 
+$\zeta(1-k) = \prod \limits_{простые q \ne p} \frac{1}{1-q^{k-1}} $
+
+\end{center}
+
+\end{exampleblock}
+
+Практические вычисления \\
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+$1-k$ & -1&-3&-5&-7&-9&-11&-13&-15 \\ \hline
+$\zeta(1-k)$ & $-\frac{1}{12}$ &$ \frac{1}{120}$ & $-\frac{1}{252}$ & $\frac{1}{240}$ & $-\frac{1}{132}$ & $-\frac{691}{32760}$ & $-\frac{1}{12}$ &$ \frac{3617}{8160}$ \\ \hline
+\end{tabular}
+\end{frame}
+
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%
+%	SECTION: UPDATESS
+%
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\section{Практическое применение}
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	FRAME:
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\begin{frame}{Применение в теории суперструн}
+Интерполяция дзета-функции находит свое применение при расчете упорядочивающей константы.
+
+$$ \zeta(-1) = \frac{-1}{12} = 1 + 2 + 3 + 4 + 5 + ...$$
+\[
+\left\{
+\begin{aligned}	
+& a = \frac{1}{2}(D-2)\sum \limits_{p = 1}^{\infty} p\\
+& D = 26, a = -1\\
+\end{aligned}
+\right.
+\]
+
+Значение D приводит к согласованости определения оператора Вирасоро, а значения $a$ к тому, что спектр открытых струн     включал безмассовые фотонные состояния!
+\vspace{20mm}
+\end{frame}
+
+
+
+\begin{frame}{Литература}
+	\begin{thebibliography}{10}
+
+	\beamertemplatebookbibitems
+	\bibitem{etg} Каток С.Б. p-адический анализ в сравнении с вещественным -- М., МЦНМО, 2004, 112 с. 
+
+	\beamertemplatebookbibitems
+	\bibitem{EBU2011}Грин М., Шварц Дж., Виттен Э. Теория суперструн -- М.: Мир, 1990. - 656 с. 
+
+	\beamertemplatebookbibitems
+	\bibitem{EBU2012}Цвибах Б. Начальный курс теории струн -- М.: Едиториал УРСС, 2011. - 784 с.	
+
+  \end{thebibliography}
+\end{frame}
+
+
+\end{document}
